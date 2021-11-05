@@ -4,11 +4,13 @@ services:
   php-fpm:
     build:
       context: ./php-fpm
+    volumes:
+      - ../src-php-fpm:/var/www
   nginx:
     build:
       context: ./nginx
     volumes:
-      - ../src:/var/www
+      - ../src-nginx:/var/www
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf
       - ./nginx/sites/:/etc/nginx/sites-available
       - ./nginx/conf.d/:/etc/nginx/conf.d
@@ -25,3 +27,5 @@ services:
       - MYSQL_USER=myuser
       - MYSQL_PASSWORD=secret
       - MYSQL_ROOT_PASSWORD=docker
+    volumes:
+      - ./database/data.sql:/docker-entrypoint-initdb.d/data.sql
