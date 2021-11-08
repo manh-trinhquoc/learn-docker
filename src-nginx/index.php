@@ -1,4 +1,4 @@
-<?php $value = "World"; ?>
+<?php $value = "World nginx"; ?>
 <html>
 
 <body>
